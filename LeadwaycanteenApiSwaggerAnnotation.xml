@@ -1,0 +1,3767 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LeadwaycanteenApi</name>
+    </assembly>
+    <members>
+        <member name="T:LeadwaycanteenApi.Controllers.AdminController">
+            <summary>
+            Controller for performin different admin tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AdminController.#ctor(LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService,LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService,LeadwaycanteenApi.Services.AuthService.IAuthService,AutoMapper.IMapper)">
+            <summary>
+            Controller for performin different admin tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AdminController.AddAdmin(System.String)">
+            <summary>
+            Add to admin
+            </summary>
+            <remarks>
+            Sample request
+            POST /api/admin/addadmin
+            Returns a response wrapper with a success or failded message
+            </remarks>
+            <param name="email">The user email</param>
+            <returns>true, false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AdminController.CreateVendor(LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto,System.String)">
+            <summary>
+            Creates a new vendor
+            </summary>
+            <remarks>
+            Sample request
+            POST /api/admin/createvendor
+            Returns a response wrapper with a success or failded message
+            </remarks>
+            <param name="vendor">The vendor details</param>
+            <param name="branchName">The branch name</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.AuthController">
+            <summary>
+            Controller for performing authentication tasks 
+            </summary>
+            <param name="authService">The authentication service</param>
+            <param name="mapper">Automapper</param>
+            <param name="vendorService">The vendor service</param>
+            <param name="emailService">The email service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.#ctor(LeadwaycanteenApi.Services.AuthService.IAuthService,AutoMapper.IMapper,LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService,LeadwaycanteenApi.Services.EmailService.IEmailService)">
+            <summary>
+            Controller for performing authentication tasks 
+            </summary>
+            <param name="authService">The authentication service</param>
+            <param name="mapper">Automapper</param>
+            <param name="vendorService">The vendor service</param>
+            <param name="emailService">The email service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.VendorLogin(LeadwaycanteenApi.Entities.Dtos.GeneralDto.UserLoginDto)">
+            <summary>
+            Login vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            POST /api/auth/loginvendor
+            Returns a response wrapper with Vendor details and access token
+            </remarks>
+            <param name="user">The vendor email and password</param>
+            <returns>VendorResponseDto</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.Login(LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeLoginDto)">
+            <summary>
+            Login staff
+            </summary>
+            <remarks>
+            Sample request: 
+            POST /api/auth/login
+            Returns a response wrapper with Employee details and access token
+            </remarks>
+            <param name="user">The Employee email and password</param>
+            <returns>EmployeeResponse</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.SetVendorPassword(LeadwaycanteenApi.Entities.Dtos.GeneralDto.UserLoginDto)">
+            <summary>
+            Set vendor password
+            </summary>
+            <remarks>
+            Sample request
+            POST /api/auth/setvendorpassword
+            Returns a response wrapper with Employee details and access token
+            </remarks>
+            <param name="user">Contains the user email and password</param>
+            <returns>bool or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.Refresh(System.String,System.String,System.String)">
+            <summary>
+            Refreshes users access token
+            </summary>
+            <remarks>
+            Sample request:
+            /api/refresh
+            </remarks>
+            <param name="email">user email</param>
+            <param name="oldAccessToken">old acess token</param>
+            <param name="role">user role</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.SendResetTokenMail(System.String)">
+            <summary>
+            Sends a reset token
+            </summary>
+            <param name="email">vendors email</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.AuthController.ValidateResetToken(System.String,System.String)">
+            <summary>
+            Validates a reset token
+            </summary>
+            <param name="email">vendors email</param>
+            <param name="resetToken">the reset token to be validated</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.BranchController">
+            <summary>
+            Controller for performing branch tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.BranchController.#ctor(LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService,AutoMapper.IMapper)">
+            <summary>
+            Controller for performing branch tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.BranchController.CreateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Create a new branch
+            </summary>
+            <remarks>
+            Sample request
+            POST /api/branch/createbranch
+            </remarks>
+            <param name="branch">The branch data</param>
+            <returns>A response of sucessfull or failed</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.BranchController.GetBranch(System.String)">
+            <summary>
+            Get a branch
+            </summary>
+            <remarks>
+            Sample request:
+            GET /api/branch/getbranch
+            </remarks>
+            <param name="branchName">Branch name</param>
+            <returns>branch details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.BranchController.UpdateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Update a branch
+            </summary>
+            <remarks>
+            Sample request
+            PUT /api/branch/deletebranch
+            </remarks>
+            <param name="branch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.BranchController.DeleteBranch(System.String)">
+            <summary>
+            Delete a branch
+            </summary>
+            <remarks>
+            Sample erequest
+            DELETE /api/branch/deletebranch
+            </remarks>
+            <param name="branchName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.InventoryItemController">
+            <summary>
+            Inventory Item Controller
+            </summary>
+            <param name="inventoryItemService">inventory service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.#ctor(LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService)">
+            <summary>
+            Inventory Item Controller
+            </summary>
+            <param name="inventoryItemService">inventory service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.GetAllInventoryItems(System.String,System.Int32,System.Int32)">
+            <summary>
+            Get all inventory items
+            </summary>
+            <remarks>
+            Sample request:
+            POST /api/inventoryitem/getitembyid/{inventoryId}
+            </remarks>
+            <param name="vendorname"></param>
+            <param name="page">starting page</param>
+            <param name="pageSize">how many u want</param>
+            <returns>Returns a list of inventory items</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.CreateInventoryItem(LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto)">
+            <summary>
+            Create inventory item
+            </summary>
+            <remarks>
+            Sample request:
+            POST /api/inventoryitem/createinventoryitem
+            </remarks>
+            <param name="inventoryItem">details of item to be created</param>
+            <returns>return true,  false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.AddItemToInventory(System.String,System.String)">
+            <summary>
+            Add item to inventory
+            </summary>
+            <remarks>
+            Sample request:
+            POST /api/inventoryitem/additemtoinventory/{inventoryId}
+            </remarks>
+            <param name="fooditemname">food item name</param>
+            <param name="vendorname">vendor name</param>
+            <returns>true, false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.CreateAndAddToInventory(LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto,System.String)">
+            <summary>
+            Create and add
+            </summary>
+            <remarks>
+            Sample request:
+            POST /api/inventoryitem/createandadd/{vendorname}
+            </remarks>
+            <param name="fooditem">food item details</param>
+            <param name="vendorname">vendor name</param>
+            <returns>true, false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.GetItem(System.String,System.String)">
+            <summary>
+            Get item from inventory
+            </summary>
+            <remarks>
+            Sample request:
+            /api/inventoryitem/getitem?itemname=vendorname=
+            </remarks>
+            <param name="itemname">item name</param>
+            <param name="vendorname">vendor name</param>
+            <returns>returns a list of inventory items</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.DeleteItem(System.String,System.String)">
+            <summary>
+            Delete an item from the inventory
+            </summary>
+            <remarks>
+            Sample request:
+            DELETE /api/inventoryitem/deleteitem/{itemname}/{vendorname}
+            </remarks>
+            <param name="itemname">item name</param>
+            <param name="vendorname">the vendor name</param>
+            <returns>true, false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.SetFoodItemStatus(System.String,System.String,LeadwaycanteenApi.Entities.Model.FoodItemStatus)">
+            <summary>
+            Set food item status
+            </summary>
+            <remarks>
+            In the food item status 0 repesents Available and 1 represents Unavailable
+            Sample Resquest:
+            PUT /api/inventoryitem/setfooditemstatus/{itemname}/{vendorname}
+            </remarks>
+            <param name="itemname">Food item name</param>
+            <param name="vendorname">The vendor name</param>
+            <param name="foodItemStatus">The food item status</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.InventoryItemController.AddToFoodItem(System.String,System.String,System.Int32)">
+            <summary>
+            incerease food item quantity
+            </summary>
+            <param name="vendorName">The vendor name</param>
+            <param name="itemName">The Food item name</param>
+            <param name="quantity">The amount to be added</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.OrdersController">
+            <summary>
+            Controller for performing order tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.#ctor(LeadwaycanteenApi.Services.OrderService.IOrderService,LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService)">
+            <summary>
+            Controller for performing order tasks
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.CreateOrder(System.Collections.Generic.List{LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto},System.String,System.String)">
+            <summary>
+            Creates an Order
+            </summary>
+            <param name="fooditems">A list of food items</param>
+            <param name="vendorName">The vendor Id</param>
+            <param name="employeeMail">The employee Mail</param>
+            <returns>Order information</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.CancelOrder(System.Guid)">
+            <summary>
+            Canceles an Order
+            </summary>
+            <param name="OrderId">The order id</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.AddFoodItemToOrder(LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto,System.Guid)">
+            <summary>
+            Adds a food item
+            </summary>
+            <param name="foodItem">Food item detail</param>
+            <param name="orderId">The id of the order</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.GetOrder(System.Guid)">
+            <summary>
+            Gets an order
+            </summary>
+            <param name="Orderid">The id of the order</param>
+            <returns>An order value</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.RemoveItemFromOrder(System.String)">
+            <summary>
+            Removes an item from an order
+            </summary>
+            <param name="fooditemname">The food item name</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.MarkOrderAsCompleted(System.Guid)">
+            <summary>
+            Complete Order
+            </summary>
+            <param name="orderId">The Order Id</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.GetRecentOrder(System.String,System.String)">
+            <summary>
+            Gets recent order
+            </summary>
+            <remarks>
+            Sample request:
+            GET /api/orders/getrecentorder
+            </remarks>
+            <param name="vendorname">The vendor Name</param>
+            <param name="employeeMail">The employee Name</param>
+            <returns>The recent order</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.GetAllOrders(System.Int32,System.Int32)">
+            <summary>
+            Gets all orders
+            </summary>
+            <remarks>
+            page size and page must be grater than 0
+            Sample Request:
+            GET /api/orders/getallorders/1/1
+            </remarks>
+            <param name="page">start</param>
+            <param name="pageSize">how many data u need</param>
+            <returns>a list of orders in that range</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.OrdersController.GetAllOrdersByVendor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets all vendor orders
+            </summary>
+            <remarks>
+            Note the page size must not be less than 0
+            </remarks>
+            <param name="vendorname">the vendor name</param>
+            <param name="page">the page start</param>
+            <param name="pageSize">how many data u need</param>
+            <returns></returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.ReviewController">
+            <summary>
+            Controller for performing review tasks
+            </summary>
+            <param name="reviewService">review service</param>
+            <param name="mapper">Mapper service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.ReviewController.#ctor(LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService,AutoMapper.IMapper)">
+            <summary>
+            Controller for performing review tasks
+            </summary>
+            <param name="reviewService">review service</param>
+            <param name="mapper">Mapper service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.ReviewController.AddReview(LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto)">
+            <summary>
+            Add Review
+            </summary>
+            <remarks>
+            Sample request:
+            POST /api/review/addreview
+            </remarks>
+            <param name="review">The review detail</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.ReviewController.GetReveiwsById(System.Guid)">
+            <summary>
+            Get review by id
+            </summary>
+            <remarks>
+            Sample request:
+            GET /api/review/getreview
+            </remarks>
+            <param name="id">The Review Id</param>
+            <returns>A review</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.ReviewController.GetReview(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Get review by employee name
+            </summary>
+            <remarks>
+            Sample request:
+            GET /api/review/getreview
+            </remarks>
+            <param name="employeeName">The employee name</param>
+            <param name="vendorName">The vendor name</param>
+            <param name="page">The starting page</param>
+            <param name="pageSize">How many u want</param>
+            <returns>A review</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.ReviewController.GetReviewByVendorName(System.String,System.Int32,System.Int32)">
+            <summary>
+            Get review by vendor name
+            </summary>
+            <param name="vendorName">The Vendor Name</param>
+            <param name="page">The starting page</param>
+            <param name="pageSize">The Page Size</param>
+            <returns>The Review detail.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Controllers.VendorController">
+            <summary>
+            Controller for performing vendor tasks
+            </summary>
+            <param name="vendorService"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.#ctor(LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService,AutoMapper.IMapper)">
+            <summary>
+            Controller for performing vendor tasks
+            </summary>
+            <param name="vendorService"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.DeleteVendor(System.String)">
+            <summary>
+            Delete vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            POST /api/vendor/deletevendor
+            Returns a response wrapper with success or failed message
+            </remarks>
+            <param name="email">The vendor email</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.GetVendor(System.String,System.String)">
+            <summary>
+            Get vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            POST /api/vendor/getvendor
+            Returns a response wrapper with Vendor details
+            </remarks>
+            <param name="email">The vendor email</param>
+            <param name="password">The vendors password</param>
+            <returns>VendorResponse</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.UpdateVendor(LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto)">
+            <summary>
+            Update vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            PUT /api/vendor/updatevendor
+            Returns a response wrapper with success or failed message
+            </remarks>
+            <param name="vendor">The vendor details</param>
+            <returns>VendorResponse</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.ActivateVendor(System.String)">
+            <summary>
+            Activate vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            PUT /api/vendor/acivatevendor
+            Returns a response wrapper with success or failed message
+            </remarks>
+            <param name="email">The vendor email</param>
+            <returns>bool or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.DeactivateVendor(System.String)">
+            <summary>
+            Deactivate vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            PUT /api/vendor/deactivatevendor
+            Returns a response wrapper with success or failed message
+            </remarks>
+            <param name="email">The vendor email</param>
+            <returns>bool or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.SuspendVendor(System.String)">
+            <summary>
+            Suspend vendor
+            </summary>
+            <remarks>
+            Sample request: 
+            DELETE /api/vendor/suspendvendor
+            Returns a response wrapper with success or failed message
+            </remarks>
+            <param name="email">The vendor email</param>
+            <returns>bool or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.GetAllVendor">
+            <summary>
+            Get all vendors
+            </summary>
+            <remarks>
+            Sample request: 
+            GET /api/vendor/getallvendors
+            Returns a response wrapper with all vendors
+            </remarks>
+            <returns>List of all vendors</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.ChangeVendorBranch(System.String,System.String)">
+            <summary>
+            Changes the vendors branch
+            </summary>
+            <remarks>
+            Sample request:
+            PUT /api/vendor/changevendorbranch
+            </remarks>
+            <param name="email">vendors email address</param>
+            <param name="branchName">The branch name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.GetVendorByBranchName(System.String)">
+            <summary>
+            Gets the vendor by branch name
+            </summary>
+            <remarks>
+            Sample request:
+            GET /api/vendor/getvendorbybranchname
+            </remarks>
+            <param name="branchName">name of the branch</param>
+            <returns>list of the vendors</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.OpenCanteen(System.String)">
+            <summary>
+            Open canteen
+            </summary>
+            <remarks>
+            Sample request:
+            PUT /api/vendor/opencanteen
+            </remarks>
+            <param name="vendorName">Vendor Name</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Controllers.VendorController.CloseCanteen(System.String)">
+            <summary>
+            Close canteen
+            </summary>
+            <remarks>
+            Sample request:
+            PUT /api/vendor/opencanteen
+            </remarks>
+            <param name="vendorName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto">
+            <summary>
+            Data transfer object for a branch, containing basic information about the branch.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto.BranchName">
+            <summary>
+            Gets or sets the name of the branch.
+            </summary>
+            <remarks>
+            The branch name must be at least 5 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto.BranchAddress">
+            <summary>
+            Gets or sets the address of the branch.
+            </summary>
+            <remarks>
+            The branch address must be at least 10 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto.State">
+            <summary>
+            Gets or sets the state where the branch is located.
+            </summary>
+            <remarks>
+            The state must be at least 5 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto.LGA">
+            <summary>
+            Gets or sets the local government area (LGA) where the branch is located.
+            </summary>
+            <remarks>
+            The LGA must be at least 10 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto.Note">
+            <summary>
+            Gets or sets a note about the branch.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse">
+            <summary>
+            Represents a data transfer object for an employee's response.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse.FullName">
+            <summary>
+            Gets or sets the full name of the employee.
+            </summary>
+            <remarks>
+            The full name is required and must not exceed 225 characters.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse.Email">
+            <summary>
+            Gets or sets the email address of the employee.
+            </summary>
+            <remarks>
+            The email address is required and must be in a valid email format.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse.UserImageUrl">
+            <summary>
+            Gets or sets the URL of the employee's user image.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse.Bio">
+            <summary>
+            Gets or sets a brief bio of the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse.Password">
+            <summary>
+            Gets or sets the password of the employee.
+            </summary>
+            <remarks>
+            The password is required and must meet the following complexity requirements:
+            - At least 12 characters long
+            - Contain at least one uppercase letter
+            - Contain at least one lowercase letter
+            - Contain at least one special character
+            - Contain at least one number
+            </remarks>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeResponse">
+            <summary>
+            Represents a data transfer object for an employee's response.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeResponse.FullName">
+            <summary>
+            Gets or sets the full name of the employee.
+            </summary>
+            <remarks>
+            The full name is required.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeResponse.Email">
+            <summary>
+            Gets or sets the email address of the employee.
+            </summary>
+            <remarks>
+            The email address is required and must be in a valid email format.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeResponse.UserImageUrl">
+            <summary>
+            Gets or sets the URL of the employee's user image.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryDto">
+            <summary>
+            Dto for The inventory
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryDto.InventoryItems">
+            <summary>
+            Gets The Inventory items
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto">
+            <summary>
+            Represents a data transfer object for an inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.InventoryItemId">
+            <summary>
+            Gets or sets the unique identifier of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.TotalAmount">
+            <summary>
+            Gets or sets the total amount of the inventory item.
+            </summary>
+            <remarks>
+            The total amount is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.Amount">
+            <summary>
+            Gets or sets the amount of the inventory item.
+            </summary>
+            <remarks>
+            The amount is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.FoodItemName">
+            <summary>
+            Gets or sets the name of the food item.
+            </summary>
+            <remarks>
+            The food item name is required, must not be null, and must be at least 3 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.FoodItemStatus">
+            <summary>
+            Gets or sets the status of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the inventory item.
+            </summary>
+            <remarks>
+            The quantity is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.FoodItemDescription">
+            <summary>
+            Gets or sets a brief description of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.ImageUrl">
+            <summary>
+            Gets or sets the URL of the food item image.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto.FoodItemClass">
+            <summary>
+            Gets or sets the class of the food item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto">
+            <summary>
+            Represents a data transfer object for an inventory item request.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.Amount">
+            <summary>
+            Gets or sets the amount of the inventory item.
+            </summary>
+            <remarks>
+            The amount is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.FoodItemName">
+            <summary>
+            Gets or sets the name of the food item.
+            </summary>
+            <remarks>
+            The food item name is required, must not be null, and must be at least 3 characters long.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.FoodItemStatus">
+            <summary>
+            Gets or sets the status of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the inventory item.
+            </summary>
+            <remarks>
+            The quantity is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.FoodItemDescription">
+            <summary>
+            Gets or sets a brief description of the food item.
+            </summary>
+            <remarks>
+            The food item description is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.ImageUrl">
+            <summary>
+            Gets or sets the URL of the food item image.
+            </summary>
+            <remarks>
+            The image URL is required and must not be null.
+            </remarks>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto.FoodItemClass">
+            <summary>
+            Gets or sets the class of the food item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrderFoodItemDto">
+            <summary>
+            Data transfer object for ordering food items.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrderFoodItemDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrderFoodItemDto.FoodItem">
+            <summary>
+            Gets or sets the food item being ordered.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrderFoodItemDto.SubTotal">
+            <summary>
+            Gets or sets the subtotal for the ordered food item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto">
+            <summary>
+            Data transfer object for orders.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.OrderId">
+            <summary>
+            Gets or sets the unique identifier for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.Status">
+            <summary>
+            Gets or sets the current status of the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.ScanTime">
+            <summary>
+            Gets or sets the date and time when the order was scanned.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.OrderFoodItems">
+            <summary>
+            Gets or sets the list of food items in the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.PaymentMethod">
+            <summary>
+            Gets or sets the payment method used for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.TotalAmountToPay">
+            <summary>
+            Gets or sets the total amount to be paid for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto.CreatedAt">
+            <summary>
+            Gets or sets the date and time when the order was created.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersFoodItemDto">
+            <summary>
+            Data transfer object for food items in an order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersFoodItemDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersFoodItemDto.FoodItem">
+            <summary>
+            Gets or sets the food item details.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemDto">
+            <summary>
+            Data transfer object for inventory items in an order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemDto.InventoryItemId">
+            <summary>
+            Gets or sets the unique identifier for the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemDto.Amount">
+            <summary>
+            Gets or sets the amount of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemDto.FoodItemName">
+            <summary>
+            Gets or sets the name of the food item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemReDto">
+            <summary>
+            Data transfer object for inventory items in an order (read-only).
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemReDto.FoodItemName">
+            <summary>
+            Gets the name of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemReDto.InventoryItemId">
+            <summary>
+            Gets the unique identifier for the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemReDto.Amount">
+            <summary>
+            Gets the amount of the inventory item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto">
+            <summary>
+            Data transfer object for inventory item requests.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto.InventoryItemId">
+            <summary>
+            Gets or sets the unique identifier for the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto.Quantity">
+            <summary>
+            Gets or sets the quantity of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto.Amount">
+            <summary>
+            Gets or sets the amount of the inventory item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto">
+            <summary>
+            Data transfer object for password reset.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.TokenCreatedAt">
+            <summary>
+            Gets or sets the date and time when the password reset token was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.TokenExpiresAt">
+            <summary>
+            Gets or sets the date and time when the password reset token expires.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.UsedAt">
+            <summary>
+            Gets or sets the date and time when the password reset token was used.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.IsCancelled">
+            <summary>
+            Gets or sets a flag indicating whether the password reset has been cancelled.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.Token">
+            <summary>
+            Gets or sets the password reset token.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.resetDto">
+            <summary>
+            Gets or sets a nested password reset DTO (not recommended, consider removing).
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.PasswordResetDto.CancelledAt">
+            <summary>
+            Gets or sets the date and time when the password reset was cancelled.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto">
+            <summary>
+            Data transfer object for reviews.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto.Review">
+            <summary>
+            Gets or sets the review text.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto.Rating">
+            <summary>
+            Gets or sets the rating given.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto.EmployeeName">
+            <summary>
+            Gets or sets the name of the employee who made the review.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto.VendorName">
+            <summary>
+            Gets or sets the name of the vendor being reviewed.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsResponseDto">
+            <summary>
+            Data transfer object for review responses.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsResponseDto.Employee">
+            <summary>
+            Gets or sets the employee who made the review.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsResponseDto.Vendor">
+            <summary>
+            Gets or sets the vendor being reviewed.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsResponseDto.Review">
+            <summary>
+            Gets or sets the review text.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsResponseDto.Rating">
+            <summary>
+            Gets or sets the rating given.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.UserLoginDto">
+            <summary>
+            Data transfer object for user login.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.UserLoginDto.Email">
+            <summary>
+            Gets or sets the email address of the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.UserLoginDto.Password">
+            <summary>
+            Gets or sets the password of the user.
+            </summary>
+            <remarks>
+            The password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.
+            </remarks>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeLoginDto">
+            <summary>
+            Data transfer object for employee login.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeLoginDto.Email">
+            <summary>
+            Gets or sets the email address of the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeeLoginDto.Password">
+            <summary>
+            Gets or sets the password of the employee.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto">
+            <summary>
+            Data transfer object for Vendor information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.VendorId">
+            <summary>
+            Unique identifier for the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.Email">
+            <summary>
+            Email address of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.VendorName">
+            <summary>
+            Name of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.Phone">
+            <summary>
+            Phone number of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.Address">
+            <summary>
+            Address of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.FirstName">
+            <summary>
+            First name of the Vendor contact person.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.LastName">
+            <summary>
+            Last name of the Vendor contact person.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.AccountNumber">
+            <summary>
+            Account number of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.BankName">
+            <summary>
+            Name of the bank associated with the Vendor's account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.AccountName">
+            <summary>
+            Name of the account holder.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.Status">
+            <summary>
+            Status of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.VendorsContractForm">
+            <summary>
+            Contract form for the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.LetterOfAgreement">
+            <summary>
+            Letter of agreement for the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.CompanyRegistrationDocument">
+            <summary>
+            Company registration document for the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto.Others">
+            <summary>
+            Additional information about the Vendor.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse">
+            <summary>
+            Response object for Vendor information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.Email">
+            <summary>
+            Email address of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.VendorName">
+            <summary>
+            Name of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.Phone">
+            <summary>
+            Phone number of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.Address">
+            <summary>
+            Address of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.FirstName">
+            <summary>
+            First name of the Vendor contact person.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.LastName">
+            <summary>
+            Last name of the Vendor contact person.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.AccountNumber">
+            <summary>
+            Account number of the Vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.BankName">
+            <summary>
+            Name of the bank associated with the Vendor's account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.AccountName">
+            <summary>
+            Name of the account holder.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorResponse.Status">
+            <summary>
+            Status of the Vendor.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.AdResponseDto">
+            <summary>
+            Data transfer object for Ad response information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.AdResponseDto.fullName">
+            <summary>
+            Full name of the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.AdResponseDto.username">
+            <summary>
+            Username of the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.AdResponseDto.telephoneNumber">
+            <summary>
+            Telephone number of the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.AdResponseDto.errorMsg">
+            <summary>
+            Error message associated with the Ad response.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto">
+            <summary>
+            Data transfer object for Inventory response information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.InventoryItemId">
+            <summary>
+            Unique identifier for the Inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.TotalAmount">
+            <summary>
+            Total amount of the Inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.Amount">
+            <summary>
+            Amount of the Inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.FoodItemName">
+            <summary>
+            Name of the Food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.FoodItemStatus">
+            <summary>
+            Status of the Food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.FoodItemDescription">
+            <summary>
+            Description of the Food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.ImageUrl">
+            <summary>
+            URL of the Food item image.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto.FoodItemClass">
+            <summary>
+            Classification of the Food item (e.g. "Protein").
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto">
+            <summary>
+            Data transfer object for user login response information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto.Accesstoken">
+            <summary>
+            Access token for the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto.Vendor">
+            <summary>
+            Vendor information for the user.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto.Employee">
+            <summary>
+            Employee information for the user.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel">
+            <summary>
+            Model representing a token response.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel.AccessToken">
+            <summary>
+            The access token for authentication.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel.RefreshToken">
+            <summary>
+            The refresh token for obtaining a new access token.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel.IsValid">
+            <summary>
+            Indicates whether the token is valid.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.EmployeeResponseDto">
+            <summary>
+            Data transfer object for employee response information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.EmployeeResponseDto.Accesstoken">
+            <summary>
+            Access token for the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.EmployeeResponseDto.Employee">
+            <summary>
+            Employee response information.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.VendorResponseDto">
+            <summary>
+            Data transfer object for vendor response information.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.VendorResponseDto.Accesstoken">
+            <summary>
+            Access token for the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Dtos.ResponseDto.VendorResponseDto.Vendor">
+            <summary>
+            Vendor information.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Branch">
+            <summary>
+            Represents a branch entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.BranchId">
+            <summary>
+            Unique identifier for the branch.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.BranchName">
+            <summary>
+            Name of the branch.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.BranchAddress">
+            <summary>
+            Physical address of the branch.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.State">
+            <summary>
+            State where the branch is located.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.LGA">
+            <summary>
+            Local Government Area (LGA) where the branch is located.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.Note">
+            <summary>
+            Additional notes or comments about the branch.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.CreatedAt">
+            <summary>
+            Date and time when the branch was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Branch.UpdatedAt">
+            <summary>
+            Date and time when the branch was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Employee">
+            <summary>
+            Represents an employee entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.EmployeeId">
+            <summary>
+            Unique identifier for the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.FullName">
+            <summary>
+            Full name of the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.Email">
+            <summary>
+            Email address of the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.PasswordHash">
+            <summary>
+            Hashed password for the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.Bio">
+            <summary>
+            Brief biography of the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.UserImageUrl">
+            <summary>
+            URL of the employee's profile image.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.Roles">
+            <summary>
+            Roles assigned to the employee.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.CreatedAt">
+            <summary>
+            Date and time when the employee was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Employee.UpdatedAt">
+            <summary>
+            Date and time when the employee was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Inventory">
+            <summary>
+            Represents an inventory entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Inventory.InventoryId">
+            <summary>
+            Unique identifier for the inventory.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Inventory.CreatedAt">
+            <summary>
+            Date and time when the inventory was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Inventory.UpdatedAt">
+            <summary>
+            Date and time when the inventory was last updated.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Inventory.InventoryItems">
+            <summary>
+            Collection of inventory items.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.InventoryItem">
+            <summary>
+            Represents an inventory item entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.InventoryItemId">
+            <summary>
+            Unique identifier for the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.Amount">
+            <summary>
+            Amount of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.TotalAmount">
+            <summary>
+            Total amount of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.FoodItemStatus">
+            <summary>
+            Status of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.Quantity">
+            <summary>
+            Quantity of the inventory item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.FoodItemName">
+            <summary>
+            Name of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.FoodItemDescription">
+            <summary>
+            Description of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.ImageUrl">
+            <summary>
+            URL of the food item's image.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.FoodItemClass">
+            <summary>
+            Class of the food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.Inventory">
+            <summary>
+            The inventory that this item belongs to.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.CreatedAt">
+            <summary>
+            Date and time when the inventory item was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.InventoryItem.UpdatedAt">
+            <summary>
+            Date and time when the inventory item was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.FoodItemStatus">
+            <summary>
+            Enumerates the possible statuses of a food item.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.FoodItemStatus.AVAILABLE">
+            <summary>
+            The food item is available.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.FoodItemStatus.UNAVAILABLE">
+            <summary>
+            The food item is unavailable.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.OrderFoodItem">
+            <summary>
+            Represents an order food item entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.OrderFoodItemsId">
+            <summary>
+            Unique identifier for the order food item.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.Quantity">
+            <summary>
+            Quantity of the food item ordered.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.CreatedAt">
+            <summary>
+            Date and time when the order food item was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.UpdatedAt">
+            <summary>
+            Date and time when the order food item was last updated.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.FoodItem">
+            <summary>
+            The food item that was ordered.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.OrderFoodItem.TotalPrice">
+            <summary>
+            Total price of the ordered food item.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Orders">
+            <summary>
+            Represents an order entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.OrderId">
+            <summary>
+            Unique identifier for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.Status">
+            <summary>
+            Status of the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.ScanStatus">
+            <summary>
+            Scan status of the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.SubTotal">
+            <summary>
+            Subtotal of the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.OrderFoodItems">
+            <summary>
+            Collection of food items in the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.ScanTime">
+            <summary>
+            Date and time when the order was scanned.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.PaymentMethod">
+            <summary>
+            Payment method used for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.CreatedAt">
+            <summary>
+            Date and time when the order was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.UpdatedAt">
+            <summary>
+            Date and time when the order was last updated.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.TotalAmountToPay">
+            <summary>
+            Total amount to pay for the order.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Orders.JobId">
+            <summary>
+            The background job id of the order
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.OrderStatus">
+            <summary>
+            Enumerates the possible statuses of an order.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.OrderStatus.ORDER_PENDING">
+            <summary>
+            The order is pending.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.OrderStatus.ORDER_COMPLETE">
+            <summary>
+            The order is complete.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.OrderStatus.ORDER_CANCELED">
+            <summary>
+            The order is canceled.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.PaymentMethods">
+            <summary>
+            Enumerates the possible payment methods.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.PaymentMethods.CASH">
+            <summary>
+            Cash payment method.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.PaymentMethods.FROM_SALARY">
+            <summary>
+            Payment from salary.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.PaymentMethods.SHARED_PAYMENT">
+            <summary>
+            Shared payment method.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.PasswordResetToken">
+            <summary>
+            Represents a password reset token entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.TokenId">
+            <summary>
+            Unique identifier for the token.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.TokenCreatedAt">
+            <summary>
+            Date and time when the token was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.TokenExpiresAt">
+            <summary>
+            Date and time when the token expires.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.UsedAt">
+            <summary>
+            Date and time when the token was used.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.IsCancelled">
+            <summary>
+            Indicates whether the token has been cancelled.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.Token">
+            <summary>
+            The actual token value.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.PasswordResetToken.CancelledAt">
+            <summary>
+            Date and time when the token was cancelled.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Payment">
+            <summary>
+            Represents a payment entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Payment.PaymentId">
+            <summary>
+            Unique identifier for the payment.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Payment.PaymentDate">
+            <summary>
+            Date and time when the payment was made.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Payment.CreatedAt">
+            <summary>
+            Date and time when the payment was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Payment.UpdatedAt">
+            <summary>
+            Date and time when the payment was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.ResponseWrapper`1">
+            <summary>
+            Represents a generic response wrapper.
+            </summary>
+            <typeparam name="T">The type of data being wrapped.</typeparam>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.ResponseWrapper`1.ResponseMessage">
+            <summary>
+            Message accompanying the response.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.ResponseWrapper`1.ResponseCode">
+            <summary>
+            HTTP status code of the response.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.ResponseWrapper`1.Data">
+            <summary>
+            The actual data being wrapped.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Reviews">
+            <summary>
+            Represents a review entity.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.ReviewId">
+            <summary>
+            Unique identifier for the review.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.Review">
+            <summary>
+            The actual review text.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.Rating">
+            <summary>
+            Rating given by the reviewer.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.Vendor">
+            <summary>
+            The vendor being reviewed.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.Employee">
+            <summary>
+            The employee who made the review.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.CreatedAt">
+            <summary>
+            Date and time when the review was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Reviews.UpdatedAt">
+            <summary>
+            Date and time when the review was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel">
+            <summary>
+            Represents a user refresh token model.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.TokenId">
+            <summary>
+            Unique identifier for the token.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.TokenHash">
+            <summary>
+            Hashed value of the token.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.Revoked">
+            <summary>
+            Indicates whether the token has been revoked.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.Vendor">
+            <summary>
+            The vendor associated with the token, if any.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.Employee">
+            <summary>
+            The employee associated with the token, if any.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.ExpiresAt">
+            <summary>
+            Date and time when the token expires.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.CreatedAt">
+            <summary>
+            Date and time when the token was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel.UpdatedAt">
+            <summary>
+            Date and time when the token was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.Vendor">
+            <summary>
+            Represents a vendor with various details such as name, contact information, 
+            payment details, and associated documents.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.VendorId">
+            <summary>
+            Gets or sets the unique identifier for the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Email">
+            <summary>
+            Gets or sets the email address of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.VendorName">
+            <summary>
+            Gets or sets the name of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Phone">
+            <summary>
+            Gets or sets the phone number of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Address">
+            <summary>
+            Gets or sets the physical address of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.PasswordHash">
+            <summary>
+            Gets or sets the password hash for the vendor's account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.FirstName">
+            <summary>
+            Gets or sets the first name of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.CanteenStatus">
+            <summary>
+            Gets or sets the canteen status of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.LastName">
+            <summary>
+            Gets or sets the last name of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.AccountNumber">
+            <summary>
+            Gets or sets the account number associated with the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.BankName">
+            <summary>
+            Gets or sets the name of the vendor's bank.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.AccountName">
+            <summary>
+            Gets or sets the name on the vendor's bank account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.VendorsContractForm">
+            <summary>
+            Gets or sets the vendor's contract form document path or identifier.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.LetterOfAgreement">
+            <summary>
+            Gets or sets the vendor's letter of agreement document path or identifier.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.CompanyRegistrationDocument">
+            <summary>
+            Gets or sets the vendor's company registration document path or identifier.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Others">
+            <summary>
+            Gets or sets any additional documents related to the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.ResetToken">
+            <summary>
+            Gets or sets the password reset token associated with the vendor's account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.CreatedAt">
+            <summary>
+            Gets or sets the date and time when the vendor was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.UpdatedAt">
+            <summary>
+            Gets or sets the date and time when the vendor was last updated.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Status">
+            <summary>
+            Gets or sets the current status of the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.UserRefreshToken">
+            <summary>
+            Gets or sets the refresh token model associated with the vendor's user account.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.FoodItems">
+            <summary>
+            Gets or sets the list of food items offered by the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Orders">
+            <summary>
+            Gets or sets the list of orders placed by customers for the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Branch">
+            <summary>
+            Gets or sets the branch that the vendor belongs to.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Payments">
+            <summary>
+            Gets or sets the list of payments made to the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Reviews">
+            <summary>
+            Gets or sets the list of reviews given to the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.VendorRequests">
+            <summary>
+            Gets or sets the list of vendor requests associated with the vendor.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.Vendor.Inventory">
+            <summary>
+            Gets or sets the inventory associated with the vendor.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.VendorStatus">
+            <summary>
+            Represents the possible statuses of a vendor.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorStatus.ACTIVE">
+            <summary>
+            The vendor is active and fully operational.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorStatus.INACTIVE">
+            <summary>
+            The vendor is inactive and may not be providing services.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorStatus.SUSPENDED">
+            <summary>
+            The vendor has been suspended and is temporarily restricted.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.VendorRequest">
+            <summary>
+            Represents a vendor request, including the request details, status, and timestamps.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.VendorRequest.RequestId">
+            <summary>
+            Gets or sets the unique identifier for the vendor request.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.VendorRequest.Request">
+            <summary>
+            Gets or sets the description or details of the vendor request.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.VendorRequest.Status">
+            <summary>
+            Gets or sets the current status of the vendor request.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.VendorRequest.CreatedAt">
+            <summary>
+            Gets or sets the date and time when the vendor request was created.
+            </summary>
+        </member>
+        <member name="P:LeadwaycanteenApi.Entities.Model.VendorRequest.UpdatedAt">
+            <summary>
+            Gets or sets the date and time when the vendor request was last updated.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Entities.Model.VendorRequestStatus">
+            <summary>
+            Represents the possible statuses of a vendor request.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorRequestStatus.APPROVED">
+            <summary>
+            The vendor request has been approved.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorRequestStatus.REJECTED">
+            <summary>
+            The vendor request has been rejected.
+            </summary>
+        </member>
+        <member name="F:LeadwaycanteenApi.Entities.Model.VendorRequestStatus.PENDING">
+            <summary>
+            The vendor request is still pending and has not been processed.
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.ExtentionClass">
+            <summary>
+            Class for configuring the application
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.ExtentionClass.ConfigureJWTAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Configures JWT authentication for the application by setting up the JWT bearer authentication scheme
+            with appropriate token validation parameters using settings from the configuration.
+            </summary>
+            <param name="service">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to configure services.</param>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> used to access the application configuration.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.ExtentionClass.ConfigureHangFire(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Configures Hangfire services for background job processing using SQL Server for storage.
+            </summary>
+            <param name="service">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to configure services.</param>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> used to access the application configuration.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.ExtentionClass.AddValidationUtility(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Registers services required for HTTP client communication and validation utility.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to configure services.</param>
+            <returns>The updated <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> with validation services added.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.ExtentionClass.ConfigureCors(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures Cross-Origin Resource Sharing (CORS) policy to allow any origin, method, and header.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to configure services.</param>
+        </member>
+        <member name="T:LeadwaycanteenApi.Hubs.InventoryHub">
+            <summary>
+            Represents a SignalR hub for handling inventory-related messages.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Hubs.InventoryHub.SendMessage(System.String,LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryDto)">
+            <summary>
+            Sends an inventory message to a specific client identified by connection ID.
+            </summary>
+            <param name="connectionId">The unique identifier for the client connection.</param>
+            <param name="inventoryDto">The inventory data to be sent to the client.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Hubs.OrdersHub">
+            <summary>
+            Represents a SignalR hub for handling orders-related messages and client connections.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Hubs.OrdersHub.SendMessage(System.String,LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto)">
+            <summary>
+            Sends an order message to a specific client identified by connection ID.
+            </summary>
+            <param name="connectionId">The unique identifier for the client connection.</param>
+            <param name="order">The order data to be sent to the client.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Hubs.OrdersHub.OnConnectedAsync">
+            <summary>
+            Called when a client connects to the hub.
+            Sends a notification to all connected clients with the connection ID of the newly connected client.
+            </summary>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Hubs.OrdersHub.OnDisconnectedAsync(System.Exception)">
+            <summary>
+            Called when a client disconnects from the hub.
+            Sends a notification to all connected clients with the connection ID of the disconnected client.
+            </summary>
+            <param name="exception">An optional exception that caused the disconnection.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Profiler.AuthProfiler">
+            <summary>
+            Defines object-to-object mappings for authentication-related entities using AutoMapper.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Profiler.AuthProfiler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Profiler.AuthProfiler"/> class and defines mappings
+            between authentication-related models and data transfer objects (DTOs).
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Profiler.BranchProfiler">
+            <summary>
+            Branch profiler
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Profiler.BranchProfiler.#ctor">
+            <summary>
+            Branch profiler
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Profiler.ResponseProfile">
+            <summary>
+            Defines object-to-object mappings for authentication-related entities using AutoMapper.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Profiler.ResponseProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Profiler.AuthProfiler"/> class and defines mappings
+            between models and data transfer objects (DTOs).
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Profiler.VendorProfiler">
+            <summary>
+            Defines object-to-object mappings for authentication-related entities using AutoMapper.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Profiler.VendorProfiler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Profiler.AuthProfiler"/> class and defines mappings
+            between models and data transfer objects (DTOs).
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.AuthService.AuthService">
+            <summary>
+            Controller for AuthServices
+            </summary>
+            <param name="config">configuration service</param>
+            <param name="jwtService">token service</param>
+            <param name="jwtManager">token manage service</param>
+            <param name="mapper">mapper service</param>
+            <param name="vendorService">vendor service</param>
+            <param name="employeeService">employee service</param>
+            <param name="validationUtility">validation service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,LeadwaycanteenApi.Services.JwtService.IJwtService,LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager,AutoMapper.IMapper,LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService,LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService,LeadwaycanteenApi.util.ValidationUtility)">
+            <summary>
+            Controller for AuthServices
+            </summary>
+            <param name="config">configuration service</param>
+            <param name="jwtService">token service</param>
+            <param name="jwtManager">token manage service</param>
+            <param name="mapper">mapper service</param>
+            <param name="vendorService">vendor service</param>
+            <param name="employeeService">employee service</param>
+            <param name="validationUtility">validation service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.Login(System.String,System.String)">
+            <summary>
+            Login a user
+            </summary>
+            <param name="Email"></param>
+            <param name="password"></param>
+            <returns>UserLoginResponse</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.LoginVendor(System.String,System.String)">
+            <summary>
+            Login a vendor
+            </summary>
+            <param name="Email"></param>
+            <param name="password"></param>
+            <returns>Vendor details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.RefreshToken(System.String,System.String,System.String)">
+            <summary>
+            Refresh a token
+            </summary>
+            <param name="Email">user email address</param>
+            <param name="token">access token</param>
+            <param name="role">user role</param>
+            <returns>UserLoginResponse</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.CreateVendor(LeadwaycanteenApi.Entities.Model.Vendor)">
+            <summary>
+            Create a vendor
+            </summary>
+            <param name="User">vendor details</param>
+            <returns>true false or null</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.RevokeToken(System.String,System.String,System.String)">
+            <summary>
+            Revoke a token
+            </summary>
+            <param name="Email">user email address</param>
+            <param name="token">access token</param>
+            <param name="role">user role</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.SetVendorPassword(System.String,System.String)">
+            <summary>
+            Set vendor password
+            </summary>
+            <param name="Email">user email address</param>
+            <param name="password">user password</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.AuthService.ValidatePasswordResetToken(System.String,System.String)">
+            <summary>
+            Validates a reset token with whats stored in the database
+            </summary>
+            <param name="email">vendor email</param>
+            <param name="passwordResetToken">the reset token</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.AuthService.IAuthService">
+            <summary>
+            Defines the contract for authentication-related services, including vendor login, token management,
+            password reset validation, and vendor account creation.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.LoginVendor(System.String,System.String)">
+            <summary>
+            Logs in a vendor with the provided email and password, returning a <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.VendorResponseDto"/> on success.
+            </summary>
+            <param name="Email">The email address of the vendor.</param>
+            <param name="password">The password of the vendor.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.VendorResponseDto"/> if login is successful, or null if unsuccessful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.CreateVendor(LeadwaycanteenApi.Entities.Model.Vendor)">
+            <summary>
+            Creates a new vendor account using the provided vendor information.
+            </summary>
+            <param name="User">The <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto"/> containing the vendor's details.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the vendor creation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.Login(System.String,System.String)">
+            <summary>
+            Logs in a user with the provided email and password, returning a <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto"/> on success.
+            </summary>
+            <param name="Email">The email address of the user.</param>
+            <param name="password">The password of the user.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto"/> if login is successful, or null if unsuccessful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.RefreshToken(System.String,System.String,System.String)">
+            <summary>
+            Refreshes the user's login token using the provided email, token, and role.
+            </summary>
+            <param name="Email">The email address of the user.</param>
+            <param name="token">The refresh token used for token renewal.</param>
+            <param name="role">The role of the user (e.g., "admin", "user").</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.UserLoginResponseDto"/> containing the new token information.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.RevokeToken(System.String,System.String,System.String)">
+            <summary>
+            Revokes the user's token to prevent further access.
+            </summary>
+            <param name="Email">The email address of the user.</param>
+            <param name="token">The token to be revoked.</param>
+            <param name="role">The role of the user.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the token revocation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.SetVendorPassword(System.String,System.String)">
+            <summary>
+            Sets a new password for the vendor using the provided email and password.
+            </summary>
+            <param name="Email">The email address of the vendor.</param>
+            <param name="password">The new password for the vendor.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the password update was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.AuthService.IAuthService.ValidatePasswordResetToken(System.String,System.String)">
+            <summary>
+            Validates the password reset token for the specified email address.
+            </summary>
+            <param name="email">The email address for which the password reset token is being validated.</param>
+            <param name="passwordResetToken">The password reset token to be validated.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the token is valid.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService">
+            <summary>
+            Provides administrative services such as adding, deleting, retrieving, and updating admin users.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService"/> class.
+            </remarks>
+            <param name="config">The configuration object used for database connection settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Provides administrative services such as adding, deleting, retrieving, and updating admin users.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService"/> class.
+            </remarks>
+            <param name="config">The configuration object used for database connection settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService.AddAdmin(System.String)">
+            <summary>
+            Adds an admin role to an employee identified by their email address.
+            </summary>
+            <param name="email">The email address of the employee to be updated to admin.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService.DeleteAdminUser(System.String)">
+            <summary>
+            Deletes an admin user identified by their email address.
+            </summary>
+            <param name="Email">The email address of the admin user to be deleted.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService.GetAdminUser(System.String)">
+            <summary>
+            Retrieves an admin user based on their email address.
+            </summary>
+            <param name="Email">The email address of the admin user to retrieve.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse"/> containing the admin user details if found, or null if no matching admin user is found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.AdminService.UpdateAdminUser(LeadwaycanteenApi.Entities.Model.Employee)">
+            <summary>
+            Updates the details of an existing admin user.
+            </summary>
+            <param name="user">The <see cref="T:LeadwaycanteenApi.Entities.Model.Employee"/> object containing updated information for the admin user.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService">
+            <summary>
+            Defines the contract for administrative services, including adding, deleting, retrieving, and updating admin users.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService.AddAdmin(System.String)">
+            <summary>
+            Adds an admin role to an employee identified by their email address.
+            </summary>
+            <param name="email">The email address of the employee to be updated to admin.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService.GetAdminUser(System.String)">
+            <summary>
+            Retrieves an admin user based on their email address.
+            </summary>
+            <param name="Email">The email address of the admin user to retrieve.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse"/> containing the admin user details if found, or null if no matching admin user is found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService.DeleteAdminUser(System.String)">
+            <summary>
+            Deletes an admin user identified by their email address.
+            </summary>
+            <param name="Email">The email address of the admin user to be deleted.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.AdminService.IAdminService.UpdateAdminUser(LeadwaycanteenApi.Entities.Model.Employee)">
+            <summary>
+            Updates the details of an existing admin user.
+            </summary>
+            <param name="user">An <see cref="T:LeadwaycanteenApi.Entities.Model.Employee"/> object containing updated information for the admin user.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService">
+            <summary>
+            Db Interface for branch service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Db Interface for branch service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService.CreateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Create a new branch in the database
+            </summary>
+            <param name="branch">Branch details</param>
+            <returns>Branch details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService.DeleteBranch(System.String)">
+            <summary>
+            Delte a branch from the database
+            </summary>
+            <param name="branchName">The branch name</param>
+            <returns>true or false</returns>s
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService.GetBranch(System.String)">
+            <summary>
+            Get a branch from the database
+            </summary>
+            <param name="branchName">The branch name</param>
+            <returns>The branch details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.BranchService.UpdateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Update a branch in the database
+            </summary>
+            <param name="branch">The branch details</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService">
+            <summary>
+            Interface for branch service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService.CreateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Create a new branch
+            </summary>
+            <param name="branch">Branch details</param>
+            <returns>Branch details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService.GetBranch(System.String)">
+            <summary>
+            Get a branch
+            </summary>
+            <param name="branchName">The branch name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService.UpdateBranch(LeadwaycanteenApi.Entities.Dtos.GeneralDto.BranchDto)">
+            <summary>
+            Update a branch
+            </summary>
+            <param name="branch">The branch details</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService.DeleteBranch(System.String)">
+            <summary>
+            Delete a branch
+            </summary>
+            <param name="branchName">The branch name</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService">
+            <summary>
+            Employee service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Employee service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.CreateEmployee(LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse)">
+            <summary>
+            Creates a new employee
+            </summary>
+            <param name="employee">employee details</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.DeleteEmployee(System.String)">
+            <summary>
+            Deletes an employee
+            </summary>
+            <param name="email">employee email address</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.GetEmployee(System.String)">
+            <summary>
+            Get an employee by email
+            </summary>
+            <param name="email">employee email address</param>
+            <returns>the employees detail</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.ResetEmployeePassword(System.String,System.String,System.String)">
+            <summary>
+            Reset an employee password
+            </summary>
+            <param name="email">employee email address</param>
+            <param name="oldpassword">password to be changed</param>
+            <param name="newpassword">new password</param>
+            <returns>bool</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.EmployeeService.UpdateEmployee(LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse)">
+            <summary>
+            Update an employee
+            </summary>
+            <param name="employee">the employee details</param>
+            <returns>bool</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService">
+            <summary>
+            Interface for employee service
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService.CreateEmployee(LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse)">
+            <summary>
+            Creates a new employee
+            </summary>
+            <param name="employee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService.GetEmployee(System.String)">
+            <summary>
+            Get an employee by email
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService.ResetEmployeePassword(System.String,System.String,System.String)">
+            <summary>
+            Reset an employee password
+            </summary>
+            <param name="email"></param>
+            <param name="oldpassword"></param>
+            <param name="newpassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService.UpdateEmployee(LeadwaycanteenApi.Entities.Dtos.GeneralDto.EmployeesResponse)">
+            <summary>
+            Update an employee
+            </summary>
+            <param name="employee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.EmployeeService.IEmployeeService.DeleteEmployee(System.String)">
+            <summary>
+            Delete an employee
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService">
+            <summary>
+            Defines the contract for inventory item services, including creating, adding, removing, retrieving, and updating inventory items.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.CreateInventoryItem(LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto)">
+            <summary>
+            Creates a new inventory item.
+            </summary>
+            <param name="inventoryItem">An <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto"/> object representing the details of the inventory item to be created.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.AddItemToInventory(System.String,System.String)">
+            <summary>
+            Adds a food item to the inventory for a specific vendor.
+            </summary>
+            <param name="vendorname">The name of the vendor to whom the item will be added.</param>
+            <param name="fooditemname">The name of the food item to be added to the inventory.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.RemoveItemFromInventory(System.String,System.String)">
+            <summary>
+            Removes a food item from the inventory for a specific vendor.
+            </summary>
+            <param name="VendorName">The name of the vendor from whom the item will be removed.</param>
+            <param name="FoodItemName">The name of the food item to be removed from the inventory.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.GetItem(System.String,System.String)">
+            <summary>
+            Retrieves a specific inventory item for a vendor by name.
+            </summary>
+            <param name="VendorName">The name of the vendor to retrieve the item from.</param>
+            <param name="ItemName">The name of the food item to retrieve.</param>
+            <returns>A task representing the asynchronous operation, with a result of a list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto"/> objects representing the inventory item details.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.GetItem(System.String)">
+            <summary>
+            Retrieves a specific inventory item by item name.
+            </summary>
+            <param name="itemName">The name of the food item to retrieve.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Model.InventoryItem"/> representing the inventory item details, or null if not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.GetAllItems(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves a paginated list of all items in a vendor's inventory.
+            </summary>
+            <param name="VendorName">The name of the vendor whose items are to be retrieved.</param>
+            <param name="page">The page number for pagination.</param>
+            <param name="pageSize">The number of items per page for pagination.</param>
+            <returns>A task representing the asynchronous operation, with a result of a list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto"/> objects representing the inventory items.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.MarkFoodItemStatus(System.String,System.String,LeadwaycanteenApi.Entities.Model.FoodItemStatus)">
+            <summary>
+            Marks the status of a food item in the inventory.
+            </summary>
+            <param name="foodItemName">The name of the food item to update the status for.</param>
+            <param name="vendorName">The name of the vendor to whom the food item belongs.</param>
+            <param name="foodItemStatus">The new status to be set for the food item.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.IInventoryItemService.AddToFoodItem(System.String,System.String,System.Int32)">
+            <summary>
+            Adds a specified quantity of a food item to the inventory for a vendor.
+            </summary>
+            <param name="itemName">The name of the food item to be added.</param>
+            <param name="vendorName">The name of the vendor to whom the item will be added.</param>
+            <param name="quantity">The quantity of the food item to be added to the inventory.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the operation was successful.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService">
+            <summary>
+            Service for managing inventory items, including creating, adding, removing, updating, and retrieving inventory items.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService"/> class with the provided configuration.
+            </remarks>
+            <param name="config">The configuration object containing the application settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Service for managing inventory items, including creating, adding, removing, updating, and retrieving inventory items.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService"/> class with the provided configuration.
+            </remarks>
+            <param name="config">The configuration object containing the application settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.AddItemToInventory(System.String,System.String)">
+            <summary>
+            Adds a food item to the inventory for a specific vendor.
+            </summary>
+            <param name="vendorname">The name of the vendor to which the food item is being added.</param>
+            <param name="fooditemname">The name of the food item being added.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating success or failure.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.CreateInventoryItem(LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto)">
+            <summary>
+            Creates a new inventory item in the database.
+            </summary>
+            <param name="inventoryItem">The inventory item details to be created, provided as an <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemReqDto"/> object.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating success or failure.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.GetAllItems(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves all inventory items for a specific vendor with pagination.
+            </summary>
+            <param name="VendorName">The name of the vendor whose inventory items are being retrieved.</param>
+            <param name="page">The page number for pagination.</param>
+            <param name="pageSize">The number of items to return per page.</param>
+            <returns>A task representing the asynchronous operation, with a result of a list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.InventoryResponseDto"/> representing the retrieved inventory items.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.GetItem(System.String,System.String)">
+            <summary>
+            Retrieves a specific inventory item by vendor name and item name.
+            </summary>
+            <param name="VendorName">The name of the vendor whose inventory is being queried.</param>
+            <param name="ItemName">The name of the food item being retrieved.</param>
+            <returns>A task representing the asynchronous operation, with a result of a list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.InventoryItemDto"/> representing the matching inventory items.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.GetItem(System.String)">
+            <summary>
+            Retrieves a specific inventory item by its name.
+            </summary>
+            <param name="itemName">The name of the food item being retrieved.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:LeadwaycanteenApi.Entities.Model.InventoryItem"/> representing the item details, or null if not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.RemoveItemFromInventory(System.String,System.String)">
+            <summary>
+            Removes a food item from the inventory of a specific vendor.
+            </summary>
+            <param name="VendorName">The name of the vendor whose inventory item is being removed.</param>
+            <param name="FoodItemName">The name of the food item to be removed.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the removal was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.MarkFoodItemStatus(System.String,System.String,LeadwaycanteenApi.Entities.Model.FoodItemStatus)">
+            <summary>
+            Marks the status (available or unavailable) of a specific food item.
+            </summary>
+            <param name="foodItemName">The name of the food item to update.</param>
+            <param name="vendorName">The name of the vendor who owns the food item.</param>
+            <param name="foodItemStatus">The status to set for the food item.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the status update was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryItemService.InventoryItemService.AddToFoodItem(System.String,System.String,System.Int32)">
+            <summary>
+            Adds a specified quantity of a food item to the inventory of a vendor.
+            </summary>
+            <param name="itemName">The name of the food item to update.</param>
+            <param name="vendorName">The name of the vendor who owns the food item.</param>
+            <param name="quantity">The quantity of the food item to add.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating whether the update was successful.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.InventoryService.IInventoryService">
+            <summary>
+            Interface for managing inventory operations related to a specific vendor.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryService.IInventoryService.CreateInventory(System.Guid)">
+            <summary>
+            Creates an inventory for a specific vendor.
+            </summary>
+            <param name="VendorId">The unique identifier of the vendor for whom the inventory is being created.</param>
+            <returns>A task representing the asynchronous operation, with a result of <see cref="T:System.Boolean"/> indicating success or failure of the inventory creation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.InventoryService.InventoryService">
+            <summary>
+            Service for managing inventory operations for vendors.
+            Implements the <see cref="T:LeadwaycanteenApi.Services.DbServices.InventoryService.IInventoryService"/> interface.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryService.InventoryService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.DbServices.InventoryService.InventoryService"/> class.
+            </summary>
+            <param name="config">The configuration object that provides access to configuration settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.InventoryService.InventoryService.CreateInventory(System.Guid)">
+            <summary>
+            Creates an inventory for the specified vendor.
+            </summary>
+            <param name="VendorId">The unique identifier of the vendor for whom the inventory is being created.</param>
+            <returns>A task that represents the asynchronous operation. The task result is <see cref="T:System.Boolean"/> indicating success or failure of the inventory creation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager">
+            <summary>
+            Interface for managing JWT refresh tokens.
+            Provides methods for storing, retrieving, deleting, and revoking refresh tokens.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager.DeleteStoredRefreshToken(System.Guid)">
+            <summary>
+            Deletes a stored refresh token by its unique identifier.
+            </summary>
+            <param name="TokenId">The unique identifier of the token to delete.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager.StoreRefreshTokenAsync(LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel)">
+            <summary>
+            Stores a refresh token for the user asynchronously.
+            </summary>
+            <param name="userRefreshToken">The refresh token model containing the user's refresh token information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager.GetStoredRefreshToken(System.String,System.String)">
+            <summary>
+            Retrieves a stored refresh token for a specific user based on their email and role.
+            </summary>
+            <param name="Email">The email address of the user whose refresh token is being retrieved.</param>
+            <param name="role">The role of the user whose refresh token is being retrieved.</param>
+            <returns>A task that represents the asynchronous operation. The task result is a <see cref="T:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel"/> containing the stored refresh token, or null if no token is found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.IJwtManager.RevokeRefreshTokenAsync(LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel)">
+            <summary>
+            Revokes a stored refresh token asynchronously.
+            </summary>
+            <param name="srt">The refresh token model to be revoked.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager">
+            <summary>
+            Implements the IJwtManager interface for managing JWT refresh tokens.
+            Provides methods to store, retrieve, revoke, and delete refresh tokens for users.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the JwtManager class.
+            </summary>
+            <param name="config">The configuration object to access application settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager.RevokeRefreshTokenAsync(LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel)">
+            <summary>
+            Revokes a refresh token by marking it as revoked in the database.
+            </summary>
+            <param name="srt">The refresh token model to revoke.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager.DeleteStoredRefreshToken(System.Guid)">
+            <summary>
+            Deletes a stored refresh token from the database by its unique identifier.
+            </summary>
+            <param name="TokenId">The unique identifier of the token to delete.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager.GetStoredRefreshToken(System.String,System.String)">
+            <summary>
+            Retrieves a stored refresh token for a user based on their email and role.
+            </summary>
+            <param name="Email">The email address of the user whose refresh token is being retrieved.</param>
+            <param name="role">The role of the user whose refresh token is being retrieved.</param>
+            <returns>A task representing the asynchronous operation. The task result is a <see cref="T:LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel"/> containing the stored refresh token, or null if no token is found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.JwtManager.JwtManager.StoreRefreshTokenAsync(LeadwaycanteenApi.Entities.Model.UserRefreshTokenModel)">
+            <summary>
+            Stores a refresh token for a user (either vendor or employee) in the database.
+            </summary>
+            <param name="userRefreshToken">The refresh token model to store, containing the token's data.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService">
+            <summary>
+            Serice for managing orders
+            </summary>
+            <param name="config">Configuration Interface</param>
+            <param name="vendorService">Vendor Interface</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService)">
+            <summary>
+            Serice for managing orders
+            </summary>
+            <param name="config">Configuration Interface</param>
+            <param name="vendorService">Vendor Interface</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.AddFoodItemToOrder(LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto,System.Guid)">
+            <summary>
+            Add a food item to an order
+            </summary>
+            <param name="foodItem">a model representing the food item to be added and the order to add it to</param>
+            <param name="orderId"></param>
+            <returns>true if successfull or false if not</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.CanceleOrder(System.Guid)">
+            <summary>
+            /Canceles   ann Order
+            </summary>
+            <param name="orderId">The Order</param>
+            <returns>true or fasle</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.CreateOrder(System.Collections.Generic.List{LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto},System.String,System.String)">
+            <summary>
+            Initializes an order
+            </summary>
+            <param name="foodItemList">list of fooditems to be added to the order</param>
+            <param name="vendorName">the vendor Id</param>
+            <param name="employeeMail">the employee mail</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.DeleteOrder(System.Guid)">
+            <summary>
+            Deletes an Order
+            </summary>
+            <param name="orderId">the order id</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.GetOrder(System.Guid)">
+            <summary>
+            Gets the Order Information
+            </summary>
+            <param name="orderId">the Id of the Order in question</param>
+            <returns>The order information or null if not found</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.GetRecentOrder(System.String,System.String)">
+            <summary>
+            Get the recent food order
+            </summary>
+            <param name="vendorName">the vendor name</param>
+            <param name="employeeMail">the employee name</param>
+            <returns>an order item</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.MarkOrderAsCompleted(System.Guid)">
+            <summary>
+            Marks an Order as Completed
+            </summary>
+            <param name="orderId">The id of the Order in question</param>
+            <returns>true of false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.RemoveFoodItemFromOrder(System.String)">
+            <summary>
+            Removes a food item from an order
+            </summary>
+            <param name="foodItemname">the name of the food item in question</param>
+            <returns>true or false</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.SetScanSuccess(System.Guid)">
+            <summary>
+            Sets the Scan status to succsessful
+            </summary>
+            <param name="orderId">the id of the order</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.GetPrice(System.Guid)">
+            <summary>
+            Gets the price of an inventoryItem
+            </summary>
+            <param name="InventoryItemId">The Id of the InventoryItem</param>
+            <returns>The price</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.GetAllOrders(System.Int32,System.Int32)">
+            <summary>
+            Gets all the orders
+            </summary>
+            <param name="page">The starting page</param>
+            <param name="pageSize">How many u want</param>
+            <returns>A list of Orders</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.GetAllVendorsOrders(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets all the orders by a vendor
+            </summary>
+            <param name="vendorName">The vendor name</param>
+            <param name="page">The starting page</param>
+            <param name="pageSize">How many you want</param>
+            <returns>A list of orders</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.DbOrderService.SetJobId(System.Guid,System.String)">
+            <summary>
+            Sets the job id for the background job for canceling the order after two hours
+            </summary>
+            <param name="orderId">The orderId</param>
+            <param name="jobId">The jobId to be saved</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService">
+            <summary>
+            Defines the contract for managing orders in the system.
+            Provides methods to create, retrieve, update, and delete orders,
+            as well as manage the food items within those orders.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.CreateOrder(System.Collections.Generic.List{LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto},System.String,System.String)">
+            <summary>
+            Creates a new order with a list of food items for a specified vendor and employee.
+            </summary>
+            <param name="foodItemList">A list of food items to include in the order.</param>
+            <param name="vendorName">The name of the vendor placing the order.</param>
+            <param name="employeeMail">The email of the employee placing the order.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the order was successfully created.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.GetOrder(System.Guid)">
+            <summary>
+            Retrieves a specific order by its unique identifier.
+            </summary>
+            <param name="orderId">The unique identifier of the order to retrieve.</param>
+            <returns>A task representing the asynchronous operation. The task result is an enumeration of orders matching the given order ID.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.GetAllOrders(System.Int32,System.Int32)">
+            <summary>
+            Retrieves all orders with pagination support.
+            </summary>
+            <param name="page">The page number to retrieve.</param>
+            <param name="pageSize">The number of orders per page.</param>
+            <returns>A task representing the asynchronous operation. The task result is an enumeration of orders with pagination applied.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.GetRecentOrder(System.String,System.String)">
+            <summary>
+            Retrieves the most recent orders for a specific vendor and employee.
+            </summary>
+            <param name="vendorName">The name of the vendor.</param>
+            <param name="employeeMail">The email of the employee.</param>
+            <returns>A task representing the asynchronous operation. The task result is an enumeration of the most recent orders for the specified vendor and employee.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.MarkOrderAsCompleted(System.Guid)">
+            <summary>
+            Marks an order as completed.
+            </summary>
+            <param name="orderId">The unique identifier of the order to mark as completed.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the operation was successful.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.DeleteOrder(System.Guid)">
+            <summary>
+            Deletes a specific order by its unique identifier.
+            </summary>
+            <param name="orderId">The unique identifier of the order to delete.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the order was successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.AddFoodItemToOrder(LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto,System.Guid)">
+            <summary>
+            Adds a food item to an existing order.
+            </summary>
+            <param name="foodItem">The food item to add to the order.</param>
+            <param name="orderId">The unique identifier of the order to which the food item will be added.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the food item was successfully added.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.RemoveFoodItemFromOrder(System.String)">
+            <summary>
+            Removes a food item from an existing order.
+            </summary>
+            <param name="foodItemname">The name of the food item to remove from the order.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the food item was successfully removed.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.CanceleOrder(System.Guid)">
+            <summary>
+            Cancels an existing order.
+            </summary>
+            <param name="orderId">The unique identifier of the order to cancel.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the order was successfully canceled.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.SetScanSuccess(System.Guid)">
+            <summary>
+            Sets the order as successfully scanned (perhaps during some verification process).
+            </summary>
+            <param name="orderId">The unique identifier of the order to mark as scanned successfully.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the order was successfully marked as scanned.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.GetAllVendorsOrders(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves all orders for a specific vendor with pagination support.
+            </summary>
+            <param name="vendorName">The name of the vendor to filter orders by.</param>
+            <param name="page">The page number to retrieve.</param>
+            <param name="pageSize">The number of orders per page.</param>
+            <returns>A task representing the asynchronous operation. The task result is an enumeration of orders for the specified vendor, with pagination applied.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService.SetJobId(System.Guid,System.String)">
+            <summary>
+            Sets the background jobId of the order
+            </summary>
+            <param name="orderId">The orderId</param>
+            <param name="jobId">The Job Id</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService">
+            <summary>
+            Defines the contract for managing reviews for employees and vendors.
+            Provides methods to create, retrieve, update, and delete reviews.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.GetAllReviews(System.Int32,System.Int32,System.String)">
+            <summary>
+            Retrieves all reviews with pagination support.
+            </summary>
+            <param name="page">The page number to retrieve.</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <param name="EmployeeName">The name of the employee to filter reviews by.</param>
+            <returns>A task representing the asynchronous operation. The task result is an enumeration of reviews.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.GetReview(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves reviews for a specific employee and vendor with pagination support.
+            </summary>
+            <param name="EmployeeName">The name of the employee to filter reviews by.</param>
+            <param name="VendorName">The name of the vendor to filter reviews by.</param>
+            <param name="page">The page number to retrieve.</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <returns>A task representing the asynchronous operation. The task result is a review for the specified employee and vendor.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.GetReviewById(System.Guid)">
+            <summary>
+            Retrieves a review by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the review to retrieve.</param>
+            <returns>A task representing the asynchronous operation. The task result is the review matching the given ID.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.CreateReview(LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto)">
+            <summary>
+            Creates a new review for an employee or vendor.
+            </summary>
+            <param name="review">The review data to create.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the review was successfully created.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.UpdateReview(LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto)">
+            <summary>
+            Updates an existing review.
+            </summary>
+            <param name="review">The updated review data.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the review was successfully updated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.DeleteReviewById(System.Int32)">
+            <summary>
+            Deletes a review by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the review to delete.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the review was successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.DeleteReviewByEmployeeName(System.String)">
+            <summary>
+            Deletes all reviews written by a specific employee.
+            </summary>
+            <param name="EmployeeName">The name of the employee whose reviews should be deleted.</param>
+            <returns>A task representing the asynchronous operation. The task result indicates whether the reviews were successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.IReviewService.GetReviewByVendorName(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves reviews for a specific vendor with pagination support.
+            </summary>
+            <param name="VendorName">The name of the vendor to filter reviews by.</param>
+            <param name="page">The page number to retrieve.</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <returns>A task representing the asynchronous operation. The task result is a review for the specified vendor.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService">
+            <summary>
+            Service for managing reviews, including creating, deleting, retrieving, and updating reviews for vendors and employees.
+            </summary>
+            <param name="config">The configuration object containing the connection string for the database.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the connection string 'DefaultConnection' is not found in the configuration.</exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Service for managing reviews, including creating, deleting, retrieving, and updating reviews for vendors and employees.
+            </summary>
+            <param name="config">The configuration object containing the connection string for the database.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the connection string 'DefaultConnection' is not found in the configuration.</exception>
+        </member>
+        <member name="F:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService._config">
+            <summary>
+            configuration
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.CreateReview(LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto)">
+            <summary>
+            Creates a new review for a vendor by an employee.
+            </summary>
+            <param name="review">The review data to be inserted into the database.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the review was successfully created.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.DeleteReviewByEmployeeName(System.String)">
+            <summary>
+            Deletes reviews associated with an employee based on the employee's name.
+            </summary>
+            <param name="EmployeeName">The name of the employee whose reviews are to be deleted.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the reviews were successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.DeleteReviewById(System.Int32)">
+            <summary>
+            Deletes a review by its unique identifier (ID).
+            </summary>
+            <param name="id">The ID of the review to be deleted.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the review was successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.GetAllReviews(System.Int32,System.Int32,System.String)">
+            <summary>
+            Retrieves a list of all reviews associated with a specific employee, paginated by page and page size.
+            </summary>
+            <param name="page">The page number to retrieve (1-based).</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <param name="EmployeeName">The name of the employee whose reviews are to be fetched.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the paginated list of reviews.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.GetReviewById(System.Guid)">
+            <summary>
+            Retrieves a review by its unique identifier (ID).
+            </summary>
+            <param name="id">The ID of the review to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a <see cref="T:LeadwaycanteenApi.Entities.Model.Reviews"/> object representing the review, or null if the review was not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.GetReview(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves a review for a specific employee and vendor, paginated by page and page size.
+            </summary>
+            <param name="EmployeeName">The name of the employee associated with the review.</param>
+            <param name="VendorName">The name of the vendor associated with the review.</param>
+            <param name="page">The page number to retrieve (1-based).</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a <see cref="T:LeadwaycanteenApi.Entities.Model.Reviews"/> object representing the review, or null if the review was not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.UpdateReview(LeadwaycanteenApi.Entities.Dtos.GeneralDto.ReviewsDto)">
+            <summary>
+            Updates an existing review.
+            </summary>
+            <param name="review">The review data to be updated.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the review was successfully updated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.ReviewService.ReviewService.GetReviewByVendorName(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves all reviews for a specific vendor, paginated by page and page size.
+            </summary>
+            <param name="VendorName">The name of the vendor whose reviews are to be fetched.</param>
+            <param name="page">The page number to retrieve (1-based).</param>
+            <param name="pageSize">The number of reviews per page.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a <see cref="T:LeadwaycanteenApi.Entities.Model.Reviews"/> object representing the review, or null if the review was not found.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService">
+            <summary>
+            Defines the contract for services related to managing vendors, including creating, retrieving, updating, and deactivating vendors.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.CreateVendor(LeadwaycanteenApi.Entities.Model.Vendor)">
+            <summary>
+            Creates a new vendor in the system.
+            </summary>
+            <param name="vendor">The vendor object containing the information to be saved.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully created.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetVendor(System.String,System.String)">
+            <summary>
+            Retrieves a vendor by email and password.
+            </summary>
+            <param name="Email">The email of the vendor.</param>
+            <param name="password">The password of the vendor.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a <see cref="T:LeadwaycanteenApi.Entities.Model.Vendor"/> object representing the vendor, or null if not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetVendor(System.String)">
+            <summary>
+            Retrieves a vendor by email.
+            </summary>
+            <param name="Email">The email of the vendor.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a <see cref="T:LeadwaycanteenApi.Entities.Model.Vendor"/> object representing the vendor, or null if not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetVendorsByBranchName(System.String)">
+            <summary>
+            Retrieves all vendors associated with a specific branch name.
+            </summary>
+            <param name="BranchName">The name of the branch for which vendors are being retrieved.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the list of vendors associated with the given branch name.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.DeleteVendor(System.String)">
+            <summary>
+            Deletes a vendor by email.
+            </summary>
+            <param name="Email">The email of the vendor to be deleted.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully deleted.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.UpdateVendor(LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto)">
+            <summary>
+            Updates an existing vendor's information.
+            </summary>
+            <param name="vendor">The vendor object containing the updated information.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully updated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetAllVendor">
+            <summary>
+            Retrieves all vendors in the system.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all vendors in the system.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.ActivaeVendor(System.String)">
+            <summary>
+            Activates a vendor's account by email.
+            </summary>
+            <param name="Email">The email of the vendor to be activated.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully activated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.DeactivateVendor(System.String)">
+            <summary>
+            Deactivates a vendor's account by email.
+            </summary>
+            <param name="Email">The email of the vendor to be deactivated.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully deactivated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.SuspendVendor(System.String)">
+            <summary>
+            Suspends a vendor's account by email.
+            </summary>
+            <param name="Email">The email of the vendor to be suspended.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the vendor was successfully suspended.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetInventoryId(System.String)">
+            <summary>
+            Retrieves the inventory ID associated with a vendor's name.
+            </summary>
+            <param name="vendorname">The name of the vendor whose inventory ID is being retrieved.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains the inventory ID associated with the vendor.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.ChangeBranch(System.String,System.String)">
+            <summary>
+            Changes the branch for a vendor based on the email and the new branch name.
+            </summary>
+            <param name="Email">The email of the vendor whose branch is being changed.</param>
+            <param name="branchName">The new branch name for the vendor.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the branch was successfully changed.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.StoreResetToken(System.Guid,System.String)">
+            <summary>
+            Stores a reset token for the vendor's account.
+            </summary>
+            <param name="vendorId">The unique identifier of the vendor.</param>
+            <param name="token">The reset token to be stored.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the token was successfully stored.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.GetVendorByName(System.String)">
+            <summary>
+            Retrieves a vendor by their name.
+            </summary>
+            <param name="vendorName">The name of the vendor to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains the <see cref="T:LeadwaycanteenApi.Entities.Model.Vendor"/> object representing the vendor, or null if the vendor is not found.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.OpenCanteen(System.String)">
+            <summary>
+            Opens a canteen for a vendor based on the vendor's name.
+            </summary>
+            <param name="vendorName">The name of the vendor whose canteen is being opened.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the canteen was successfully opened.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.CloseCanteen(System.String)">
+            <summary>
+            Closes a canteen for a vendor based on the vendor's name.
+            </summary>
+            <param name="vendorName">The name of the vendor whose canteen is being closed.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the canteen was successfully closed.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService.MarkAllVendorsAsClosed">
+            <summary>
+            Marks all vendors in the system as closed.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService">
+            <summary>
+            Service for managing vendors
+            </summary>
+            <param name="config">configuration</param>
+            <param name="branchService">The branch service</param>
+            <param name="inventoryService">The inventory service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,LeadwaycanteenApi.Services.DbServices.BranchService.IBranchService,LeadwaycanteenApi.Services.DbServices.InventoryService.IInventoryService)">
+            <summary>
+            Service for managing vendors
+            </summary>
+            <param name="config">configuration</param>
+            <param name="branchService">The branch service</param>
+            <param name="inventoryService">The inventory service</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.CreateVendor(LeadwaycanteenApi.Entities.Model.Vendor)">
+            <summary>
+            Create a new vendor
+            </summary>
+            <param name="vendor">vendor details</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.DeleteVendor(System.String)">
+            <summary>
+            Delete a vendor
+            </summary>
+            <param name="Email">vendor email</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.UpdateVendor(LeadwaycanteenApi.Entities.Dtos.GeneralDto.VendorDto)">
+            <summary>
+            Update a vendor
+            </summary>
+            <param name="vendor">vendor details</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetAllVendor">
+            <summary>
+            Get all vendors
+            </summary>
+            <returns>List of vendors</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.ActivaeVendor(System.String)">
+            <summary>
+            Activate a vendor
+            </summary>
+            <param name="Email">vendor email</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.DeactivateVendor(System.String)">
+            <summary>
+            Deactivate a vendor
+            </summary>
+            <param name="Email">vendor email</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.SuspendVendor(System.String)">
+            <summary>
+            Suspend a vendor
+            </summary>
+            <param name="Email">vendor email</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.ChangeBranch(System.String,System.String)">
+            <summary>
+            Changes the vendor branch
+            </summary>
+            <param name="Email">The vendors branch</param>
+            <param name="branchName">The new branch name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetVendorsByBranchName(System.String)">
+            <summary>
+            gets vendor by the branch name the belong to
+            </summary>
+            <param name="BranchName">the branch name</param>
+            <returns>list of vendors</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetInventoryId(System.String)">
+            <summary>
+            Gets the inventory id for the vendor
+            </summary>
+            <param name="vendorname">the vendor name</param>
+            <returns>the inventory id</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.StoreResetToken(System.Guid,System.String)">
+            <summary>
+            Stores vendor reset token
+            </summary>
+            <param name="vendorId">vendor Id</param>
+            <param name="token">the token to store</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetVendorByName(System.String)">
+            <summary>
+            Gets a vendor by name
+            </summary>
+            <param name="vendorName">The vendor name</param>
+            <returns>A vendor</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetVendor(System.String)">
+            <summary>
+            Gets a vendor
+            </summary>
+            <param name="Email">The vendor email</param>
+            <returns>Returns a vendor</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.GetVendor(System.String,System.String)">
+            <summary>
+            Get a vendor
+            </summary>
+            <param name="Email">vendor email</param>
+            <param name="password">vendors password</param>
+            <returns>vendor details</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.OpenCanteen(System.String)">
+            <summary>
+            Open a canteen
+            </summary>
+            <param name="vendorName"></param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.CloseCanteen(System.String)">
+            <summary>
+            Close a canteen
+            </summary>
+            <param name="vendorName"></param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.DbServices.VendorService.VendorService.MarkAllVendorsAsClosed">
+            <summary>
+            Mark all vendors as closed
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.EmailService.EmailService">
+            <summary>
+            Service for sending mails
+            </summary>
+            <param name="config"></param>
+            <param name="vendorService"></param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,LeadwaycanteenApi.Services.DbServices.VendorService.IVendorService)">
+            <summary>
+            Service for sending mails
+            </summary>
+            <param name="config"></param>
+            <param name="vendorService"></param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.SendVerificationMail(LeadwaycanteenApi.Entities.Model.Employee)">
+            <summary>
+            Send verification mail
+            </summary>
+            <param name="employee">The admin</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.GenerateBase64Code(System.Int32)">
+            <summary>
+            generates base64 Codes
+            </summary>
+            <param name="byteLength">code length</param>
+            <returns>a base64 code</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.GeneratePasswordResetToken(System.String)">
+            <summary>
+            Generates a password reset token
+            </summary>
+            <param name="email">users email</param>
+            <returns>a reset token</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.EncryptData(System.Byte[],System.String)">
+            <summary>
+            Encrypts a string
+            </summary>
+            <param name="data">the data to be encryted</param>
+            <param name="key">encryption key</param>
+            <returns>a byte of chars</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.EmailService.SendMessageViaSmtp(System.String)">
+            <summary>
+            Email method for sending mails with SMTP
+            </summary>
+            <param name="toEmail">To who?</param>
+            <returns>Tru or false</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.EmailService.IEmailService">
+            <summary>
+            Defines the contract for email-related services, including sending emails, verification, password resets, and data encryption.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.IEmailService.SendVerificationMail(LeadwaycanteenApi.Entities.Model.Employee)">
+            <summary>
+            Sends an email verification message to the employee.
+            </summary>
+            <param name="employee">The employee who will receive the verification email.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation. The task result contains a boolean indicating whether the verification email was successfully sent.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.IEmailService.GeneratePasswordResetToken(System.String)">
+            <summary>
+            Generates a password reset token for the given email address.
+            </summary>
+            <param name="email">The email address for which the password reset token will be generated.</param>
+            <returns>A string representing the generated password reset token.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.EmailService.IEmailService.SendMessageViaSmtp(System.String)">
+            <summary>
+            Smtp implementation of the mail service
+            </summary>
+            <param name="toEmail">To who?</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.JwtService.IJwtService">
+            <summary>
+            Defines the contract for JWT-related services, including token generation, refresh token creation, and handling expired tokens.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.IJwtService.GenerateJwtToken(System.String,System.String)">
+            <summary>
+            Generates a JWT token for the given email and role.
+            </summary>
+            <param name="email">The email address associated with the token.</param>
+            <param name="role">The role of the user for which the token will be generated.</param>
+            <returns>A <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel"/> representing the generated JWT token, or null if the token could not be generated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.IJwtService.GenerateRefreshToken(System.String,System.String)">
+            <summary>
+            Generates a refresh token for the given email and role.
+            </summary>
+            <param name="email">The email address associated with the refresh token.</param>
+            <param name="role">The role of the user for which the refresh token will be generated.</param>
+            <returns>A <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel"/> representing the generated refresh token, or null if the refresh token could not be generated.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.IJwtService.GetExpiredClaimsPrincipal(System.String)">
+            <summary>
+            Retrieves the claims principal from an expired JWT token.
+            </summary>
+            <param name="token">The JWT token that has expired.</param>
+            <returns>A <see cref="T:System.Security.Claims.ClaimsPrincipal"/> object containing the claims from the expired token.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.IJwtService.CreateRefreshToken">
+            <summary>
+            Creates a new refresh token.
+            </summary>
+            <returns>A string representing the generated refresh token.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.JwtService.JwtService">
+            <summary>
+            Service that provides methods for generating JWT tokens, creating refresh tokens, and handling expired JWT tokens.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.JwtService.JwtService"/> class.
+            </remarks>
+            <param name="configuration">The application configuration containing the JWT settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.JwtService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Service that provides methods for generating JWT tokens, creating refresh tokens, and handling expired JWT tokens.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:LeadwaycanteenApi.Services.JwtService.JwtService"/> class.
+            </remarks>
+            <param name="configuration">The application configuration containing the JWT settings.</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.JwtService.GenerateJwtToken(System.String,System.String)">
+            <summary>
+            Generates a JWT token containing the specified email and role, with an expiration time of 30 minutes.
+            </summary>
+            <param name="email">The email address of the user.</param>
+            <param name="role">The role associated with the user.</param>
+            <returns>A <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel"/> containing the generated access token and refresh token, or null if email is null.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.JwtService.GenerateRefreshToken(System.String,System.String)">
+            <summary>
+            Generates a refresh token using the same method as generating a JWT token.
+            </summary>
+            <param name="email">The email address of the user.</param>
+            <param name="role">The role of the user.</param>
+            <returns>A <see cref="T:LeadwaycanteenApi.Entities.Dtos.ResponseDto.TokenModel"/> containing the generated refresh token and access token.</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.JwtService.GetExpiredClaimsPrincipal(System.String)">
+            <summary>
+            Retrieves the claims principal from an expired JWT token.
+            </summary>
+            <param name="token">The expired JWT token.</param>
+            <returns>A <see cref="T:System.Security.Claims.ClaimsPrincipal"/> object containing the claims from the expired token.</returns>
+            <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenException">Thrown when the token is invalid or cannot be validated.</exception>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.JwtService.JwtService.CreateRefreshToken">
+            <summary>
+            Creates a new refresh token.
+            </summary>
+            <returns>A string representing the generated refresh token.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.OrderService.IOrderService">
+            <summary>
+            Interface for managing orders in the system.
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.OrderService.IOrderService.CreateOrder(System.Collections.Generic.List{LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto},System.String,System.String)">
+            <summary>
+            Creates a new order based on the provided food items, vendor name, and employee email.
+            </summary>
+            <param name="fooditems">A list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto"/> representing the food items to be added to the order.</param>
+            <param name="vendorName">The name of the vendor for which the order is being created.</param>
+            <param name="employeeMail">The email of the employee creating the order.</param>
+            <returns>A task that represents the asynchronous operation. The task result is a list of <see cref="T:LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersDto"/> representing the created order details.</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.Services.OrderService.OrderService">
+            <summary>
+            Order service for managing orders different from the dbversion
+            </summary>
+            <param name="dbOrderService">the db service for CRUD of orders</param>
+            <param name="hubContext">Hub Context</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.OrderService.OrderService.#ctor(LeadwaycanteenApi.Services.DbServices.OrderService.IDbOrderService,Microsoft.AspNetCore.SignalR.IHubContext{LeadwaycanteenApi.Hubs.OrdersHub})">
+            <summary>
+            Order service for managing orders different from the dbversion
+            </summary>
+            <param name="dbOrderService">the db service for CRUD of orders</param>
+            <param name="hubContext">Hub Context</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Services.OrderService.OrderService.CreateOrder(System.Collections.Generic.List{LeadwaycanteenApi.Entities.Dtos.GeneralDto.OrdersInventoryItemRequestDto},System.String,System.String)">
+            <summary>
+            Creates a new order and schedules a background task for it to cancle the order after 2hrs
+            </summary>
+            <param name="fooditems">The food items to be added to the order</param>
+            <param name="vendorName">The vendors name</param>
+            <param name="employeeMail">The employees name</param>
+            <returns>the recent order details</returns>
+        </member>
+        <member name="T:LeadwaycanteenApi.util.ConsoleClass`1">
+            <summary>
+            Logger utill for logging
+            </summary>
+            <typeparam name="T">Logger Type</typeparam>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ConsoleClass`1.LogError(System.Exception,System.String)">
+            <summary>
+            Logger utill for logging Errors
+            </summary>
+            <param name="ex">The exception that caused the error</param>
+            <param name="message">The exception message</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ConsoleClass`1.LogInfo(System.String)">
+            <summary>
+            Logging information
+            </summary>
+            <param name="message">The message to be logged</param>
+        </member>
+        <member name="T:LeadwaycanteenApi.util.ValidationUtility">
+            <summary>
+            Utility class for validation
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ValidationUtility.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Utility class for validation
+            </summary>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ValidationUtility.ValidateLeadwayEmail(System.String)">
+            <summary>
+            Validate if an email belongs to the Leadway domain
+            </summary>
+            <param name="email">Email address to validate</param>
+            <returns>True if the email is a valid Leadway email, false otherwise</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ValidationUtility.ValidateEmailWithLeadway(System.String,System.String)">
+            <summary>
+            Checks if a user exists in the Leadway database
+            </summary>
+            <param name="email">User's email address</param>
+            <param name="password">User's password</param>
+            <returns>Employee information if validation succeeds, null otherwise</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.util.ValidationUtility.ConvertSecureStringToBase64(System.String)">
+            <summary>
+            Converts a password to a Base64 encoded string
+            </summary>
+        </member>
+        <member name="T:LeadwaycanteenApi.Wrappers.DbWrapper`1">
+            <summary>
+            DbWrapper for database managing database trips
+            </summary>
+            <typeparam name="T">variable type</typeparam>
+            <param name="config">the configuration type</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            DbWrapper for database managing database trips
+            </summary>
+            <typeparam name="T">variable type</typeparam>
+            <param name="config">the configuration type</param>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.ExecuteAsync(System.String,System.Object)">
+            <summary>
+            Executes the sql query
+            </summary>
+            <param name="sql">sql statement</param>
+            <param name="param">the parameters</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.QueryAsync(System.String,System.Object)">
+            <summary>
+            Querys the database for information
+            </summary>
+            <param name="sql">the saql query statement</param>
+            <param name="param">the list of parameters</param>
+            <returns>a list of data</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.QuerySingleOrDefaultAsync(System.String,System.Object)">
+            <summary>
+            Gets a single data from the database
+            </summary>
+            <param name="sql">the sql statement to get the query</param>
+            <param name="param">the parameter list</param>
+            <returns>an item from the database</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.QueryFirstOrDefaultAsync(System.String,System.Object)">
+            <summary>
+            gets the first item from the database
+            </summary>
+            <param name="sql">the sql statement for the query</param>
+            <param name="param">a list of parameters</param>
+            <returns>a single item from the database</returns>
+        </member>
+        <member name="M:LeadwaycanteenApi.Wrappers.DbWrapper`1.ExecuteScalarAsync(System.String,System.Object)">
+            <summary>
+            Seriously 😒😒
+            </summary>
+            <param name="sql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

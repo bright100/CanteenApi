@@ -1,0 +1,6 @@
+@LeadwaycanteenApi_HostAddress = http://localhost:5043
+
+GET {{LeadwaycanteenApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
